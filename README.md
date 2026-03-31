@@ -2,10 +2,7 @@
 
 ## Project Overview
 
-Coworking Hub Manager is a full-stack web application. The system provides a platform for managing, searching, and reserving coworking spaces, offices, and meeting rooms within a shared workspace network.
-
-The application supports three types of users: members, space managers, and system administrators, each with different roles and permissions.
----
+Coworking Hub Manager is a full-stack web application. The system provides a platform for managing, searching, and reserving coworking spaces, offices, and meeting rooms within a shared workspace network. The application support three types od users: memebers, space managers, and system administrators, each with different roles and permissions.
 
 ## Technologies Used
 
