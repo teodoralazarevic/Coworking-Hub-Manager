@@ -1,0 +1,33 @@
+.image-container{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-image{
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  border: none;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.nav.left{
+  left: 10px;
+}
+
+.nav.right{
+  right: 10px;
+}

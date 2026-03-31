@@ -1,0 +1,27 @@
+.sort-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.workspace-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    gap:20px;
+}
+
+.workspace-card{
+    transition:0.2s;
+}
+
+.workspace-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+}
+
+mat-card-content p{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}

@@ -1,0 +1,143 @@
+/* LIST WRAPPER */
+.workspace-list{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+/* ROW / CARD */
+.workspace-row{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  transition:0.25s;
+  border:1px solid #e5e7eb; /* blagi okvir */
+}
+
+.workspace-row:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  /* border-color:#6366f1; */
+  border-color: #166534;
+}
+
+/* WORKSPACE INFO */
+.workspace-info{
+  min-width:220px;
+  text-align:center;
+}
+
+.workspace-name{
+  margin-bottom:12px;
+  font-weight:700;
+  font-size:18px;
+  color:#111827;
+}
+
+.workspace-photo{
+  width:200px;
+  height:130px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:12px;
+  border:1px solid #d1d5db;
+}
+
+.workspace-city{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+  font-size:14px;
+  color:#374151;
+  font-weight:500;
+}
+
+.location-icon{
+  font-size:18px;
+  color:#f44336;
+}
+
+/* SPACES */
+.workspace-spaces{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.space-block{
+  font-size:14px;
+  background:#f9fafb;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+.space-item{
+  display:inline-block;
+  background:#eef2ff;
+  padding:3px 8px;
+  border-radius:6px;
+  margin:2px 2px 0 0;
+  font-size:13px;
+}
+
+.muted{
+  color:#9ca3af;
+}
+
+/* ACTION BUTTON */
+.workspace-action{
+  display:flex;
+  align-items:flex-start;
+}
+
+.btn-update{
+  /* background:#6366f1; */
+  background-color: #166534;
+  border:none;
+  color:white;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
+}
+
+.btn-update:hover{
+  /* background:#4f46e5; */
+  background-color: #218e4b;
+  transform:translateY(-1px);
+}
+
+/* EMPTY MESSAGE */
+.empty{
+  text-align:center;
+  margin-top:40px;
+  color:#6b7280;
+  font-size:16px;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:800px){
+  .workspace-row{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .workspace-spaces{
+    width:100%;
+  }
+  .workspace-action{
+    margin-top:15px;
+  }
+  .workspace-photo{
+    width:90%;
+    height:auto;
+  }
+}
+

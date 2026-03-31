@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h1>Login</h1>
+  <label>Username:</label>
+  <input type="text" [(ngModel)]="username"> 
+
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="password"> 
+
+  <button (click)="login()">Login</button>
+
+  <hr>
+
+  <a [routerLink]="'/guest/forgot-pass'">Forgot password?</a> 
+  <a [routerLink]="'/guest/register'">No account? Register here!</a> 
+
+  <span class="errorMessage">{{message}}</span>
+</div>

@@ -1,0 +1,69 @@
+# =========================
+# Node.js
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+dist/
+build/
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# =========================
+# Angular
+# =========================
+/angular/dist/
+/angular/out-tsc/
+.angular/
+angular-error.log
+
+# Compiled output
+*.tsbuildinfo
+
+# Dependency directories
+/node_modules/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# =========================
+# Angular cache & build artifacts
+# =========================
+/dist/
+/tmp/
+/out-tsc/
+/cache/
+
+# Angular environment files (optional if inside frontend)
+src/environments/*.local.ts
+
+# =========================
+# Misc
+# =========================
+*.bak
+*.tmp

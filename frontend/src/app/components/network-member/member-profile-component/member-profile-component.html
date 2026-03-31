@@ -1,0 +1,155 @@
+<div class="reservations-container">
+<app-profile-component></app-profile-component>
+
+<h1 class="page-title">My reservations</h1>
+
+@if(activeReservations.length>0){
+<div class="section-header">
+
+<h2>Active reservations</h2>
+
+<div class="sort-buttons">
+    <button mat-raised-button (click)="sortActive('date')" [color]="activeSortColumn === 'date' ? 'primary' : ''">
+        Date {{ activeSortColumn === 'date' ? (activeSortDirection === 'asc' ? '↑' : '↓') : '' }}
+    </button>
+
+    <button mat-raised-button (click)="sortActive('city')" [color]="activeSortColumn === 'city' ? 'primary' : ''">
+        City
+    </button>
+
+    <button mat-raised-button (click)="sortActive('spaceName')" [color]="activeSortColumn === 'spaceName' ? 'primary' : ''">
+        Space
+    </button>
+
+    <button mat-stroked-button (click)="resetActiveSort()">Reset</button>
+</div>
+</div>
+<div class="reservations-grid">
+@for(r of sortedActiveReservations; track r.spaceName + r.startTime){
+
+<mat-card class="reservation-card">
+
+@if(r.workspace.photos.length > 0){
+<img mat-card-image 
+     [src]="getImageURL(r.workspace.photos[0])" 
+     alt="Workspace image">
+}
+
+<mat-card-header>
+
+<mat-card-title>
+{{r.workspace.workspaceName}}
+</mat-card-title>
+
+<mat-card-subtitle class="city">
+
+<mat-icon>location_on</mat-icon>
+{{r.workspace.city}}
+
+</mat-card-subtitle>
+
+</mat-card-header>
+
+<mat-card-content>
+
+<div class="reservation-info">
+
+<div class="info-row">
+<mat-icon>meeting_room</mat-icon>
+<div>
+<span class="label">Space</span>
+<span>{{r.spaceName}}</span>
+</div>
+</div>
+
+<div class="info-row">
+<mat-icon>calendar_today</mat-icon>
+<div>
+<span class="label">Date</span>
+<span>{{ r.date | date:'dd MMM yyyy' }}</span>
+</div>
+</div>
+
+<div class="info-row">
+<mat-icon>schedule</mat-icon>
+<div>
+<span class="label">Time</span>
+<span>{{ r.startTime | date:'HH:mm' }} - {{ r.endTime | date:'HH:mm' }}</span>
+</div>
+</div>
+
+</div>
+</mat-card-content>
+
+<mat-card-actions align="end">
+
+<button mat-raised-button color="warn"
+[disabled]="lateForCancel(r)"
+(click)="cancelReservation(r)">
+Cancel
+</button>
+
+</mat-card-actions>
+
+</mat-card>
+
+}
+</div>
+}
+
+@if(previousReservations.length>0){
+<h2>Previous reservations</h2>
+
+<div class="reservations-grid">
+@for(r of sortedPreviousReservations; track r.spaceName + r.startTime){
+
+<mat-card class="reservation-card past">
+
+<mat-card-header>
+    <mat-card-title>{{r.workspace.workspaceName}}</mat-card-title>
+    <mat-card-subtitle>{{r.workspace.city}}</mat-card-subtitle>
+</mat-card-header>
+
+<mat-card-content>
+
+<div class="reservation-info">
+
+<div>
+<span class="label">Space</span>
+<span>{{r.spaceName}}</span>
+</div>
+
+<div>
+<span class="label">Date</span>
+<span>{{ r.date | date:'dd MMM yyyy' }}</span>
+</div>
+
+<div>
+<span class="label">Time</span>
+<span>{{ r.startTime | date:'HH:mm' }} - {{ r.endTime | date:'HH:mm' }}</span>
+</div>
+
+<div>
+<span class="label">Status</span>
+<span class="status-badge">{{r.status}}</span>
+</div>
+
+</div>
+
+</mat-card-content>
+
+</mat-card>
+
+}
+</div>
+}
+
+@if(previousReservations.length==0 && activeReservations.length==0){
+<p class="empty">
+You did not make any reservation yet!
+</p>
+}
+
+<span class="errorMessage">{{errorMessage}}</span>
+<span class="successMessage">{{successMessage}}</span>
+</div>

@@ -1,0 +1,65 @@
+<h1>Pending Registrations</h1>
+
+@if(managerRequestExists){
+  <h3>Pending requests from managers</h3>
+  <div class="request-list">
+    @for(req of pendingRequestsManagers; track req.userData.username){
+      <div class="request-card">
+        
+        <div class="profile-section">
+          <img [src]="getImageUrl(req.userData.profileImage)" alt="Profile Image" class="profile-img">
+          <div class="profile-info">
+            <strong>{{req.userData.firstname}} {{req.userData.lastname}}</strong>
+            <span>{{req.userData.contact_phone}}</span>
+            <span>{{req.userData.email}}</span>
+          </div>
+        </div>
+
+        <div class="company-section">
+          <strong>{{req.companyData.company_name}}</strong>
+          <span>{{req.companyData.company_address}}</span>
+          <span>Reg #: {{req.companyData.reg_number}}</span>
+          <span>Tax ID: {{req.companyData.tax_ident_number}}</span>
+        </div>
+
+        <div class="actions">
+          <button class="approve" (click)="approveManagerRequest(req)">Approve</button>
+          <button class="reject" (click)="rejectRequest(req)">Reject</button>
+        </div>
+
+      </div>
+    }
+  </div>
+}
+
+@if(memberRequestsExists){
+  <h3>Pending requests from members</h3>
+  <div class="request-list">
+    @for(req of pendingRequestsMembers; track req.userData.username){
+      <div class="request-card">
+        
+        <div class="profile-section">
+          <img [src]="getImageUrl(req.userData.profileImage)" alt="Profile Image" class="profile-img">
+          <div class="profile-info">
+            <strong>{{req.userData.firstname}} {{req.userData.lastname}}</strong>
+            <span>{{req.userData.contact_phone}}</span>
+            <span>{{req.userData.email}}</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="approve" (click)="approveMemberRequest(req)">Approve</button>
+          <button class="reject" (click)="rejectRequest(req)">Reject</button>
+        </div>
+
+      </div>
+    }
+  </div>
+}
+
+@if(!memberRequestsExists && !managerRequestExists){
+  <h5 class="empty">No pending requests!</h5>
+}
+
+<span class="errorMessage">{{errorMessage}}</span>
+<span class="successMessage">{{successMessage}}</span>

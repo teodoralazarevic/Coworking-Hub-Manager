@@ -1,0 +1,86 @@
+<div class="user-details-card">
+  <h1>User Details</h1>
+
+  <div class="profile-section">
+    <img [src]="getImageUrl(user.profileImage)" alt="Profile Image" class="profile-img">
+    <div class="profile-info">
+      <p><strong>Firstname:</strong> {{user.firstname}}</p>
+      <p><strong>Lastname:</strong> {{user.lastname}}</p>
+      <p><strong>Contact phone:</strong> {{user.contact_phone}}</p>
+      <p><strong>Email:</strong> {{user.email}}</p>
+    </div>
+  </div>
+
+  <div class="user-actions">
+    <button class="btn-edit" (click)="editUser()">Edit User</button>
+    <button class="btn-delete" (click)="deleteUser()">Delete User</button>
+  </div>
+
+  @if(isManager){
+  <div class="workspace-section">
+    <h3>Workspaces</h3>
+    <table class="workspace-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Workspace name</th>
+          <th>Price per hour</th>
+          <th>City</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(ws of workspaces; track ws.workspaceName){
+        <tr>
+          <td>{{ws.company.company_name}}</td>
+          <td>{{ws.workspaceName}}</td>
+          <td>{{ws.pricePerHour}}</td>
+          <td>{{ws.city}}</td>
+          <td>{{ws.address}}</td>
+          <td>
+            <button class="btn-details" (click)="workspaceDetails(ws)">
+              Details
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+@else{
+  @if(reservations.length>0){
+    <h3>Reservations</h3>
+    <table border="solid">
+      <tr>
+        <th>Workspace name</th>
+        <th>Space name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+      </tr>
+      @for(res of reservations; track res._id){
+        <tr>
+          <td>{{res.workspace.workspaceName}}</td>
+          <td>{{res.spaceName}}</td>
+          <td>{{res.startTime | date:'dd MMM yyyy'}}</td>
+          <td>{{res.startTime | date: 'HH:mm'}} - {{res.endTime | date: 'HH:mm'}}</td>
+          <td><span 
+              [ngClass]="{
+                'status-active': res.status === 'reserved',
+                'status-cancelled': res.status === 'cancelled',
+                'status-completed':res.status === 'completed'
+              }">
+              {{res.status}}
+            </span>
+          </td>
+        </tr>
+      }
+    </table>
+  }
+}
+
+  <span class="successMessage">{{successMessage}}</span>
+  <span class="errorMessage">{{errorMessage}}</span>
+</div>

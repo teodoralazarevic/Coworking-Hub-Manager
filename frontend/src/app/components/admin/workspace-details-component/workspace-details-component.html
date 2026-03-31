@@ -1,0 +1,108 @@
+<div class="workspace-details-container">
+  
+  <div class="workspace-details">
+    <h1>Workspace overview</h1>
+    
+    <div class="workspace-info">
+      <p><strong>Workspace name:</strong> {{workspace.workspaceName}}</p>
+      <p><strong>City:</strong> {{workspace.city}}</p>
+      <p><strong>Address:</strong> {{workspace.address}}</p>
+      <p><strong>Company:</strong> {{workspace.company.company_name}}</p>
+      <p><strong>Manager:</strong> {{workspace.manager.firstname}} {{workspace.manager.lastname}}</p>
+    </div>
+
+    <div class="workspace-description">
+      <p>{{workspace.description}}</p>
+    </div>
+
+    <div class="gallery-section">
+        <app-gallery-component 
+        [photos]="workspace.photos" 
+        [loggedIn]="false" 
+        [workspaceID]="workspaceID">
+        </app-gallery-component>
+    </div>
+  </div>
+
+  @if (allRooms.length > 0) {
+    <div class="reservation-wrapper">
+      <h2>Workspace Rooms & Reservations</h2>
+      
+      <div>
+        <select id="roomSelect" class="room-select" [(ngModel)]="selectedRoomIndex" (change)="onRoomChange()">
+        @for (room of allRooms; track room.name; let i = $index) {
+            <option [value]="i">{{ room.name }} ({{ roomType(room) }})</option>
+        }
+        </select>
+      </div>
+
+      <div class="current-room-display">
+        <h3 class="room-title">{{ currentRoom.name }} <span class="room-type-badge">{{ roomType(currentRoom) }}</span></h3>
+        
+        <div class="room-details" *ngIf="currentRoom">
+          @if (currentRoom.capacity) {
+            <p><strong>Capacity:</strong> {{ currentRoom.capacity }} people</p>
+          }
+          @if (currentRoom.area) {
+            <p><strong>Area:</strong> {{ currentRoom.area }} m²</p>
+          }
+          @if (currentRoom.equipment?.length) {
+            <p><strong>Equipment:</strong> {{ currentRoom.equipment }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="reservation-calendar">
+        <div class="calendar-header">
+          <div class="nav-buttons">
+            <button (click)="prevWeek()">← Prev Week</button>
+            <button (click)="today()">Today</button>
+            <button (click)="nextWeek()">Next Week →</button>
+          </div>
+          <div class="week-label">{{ getWeekRange() }}</div>
+        </div>
+
+        <div class="calendar-container">
+          <mwl-calendar-week-view
+            [viewDate]="viewDate"
+            [events]="currentRoomEvents"
+            [weekStartsOn]="weekStartsOn"
+            [dayStartHour]="8"
+            [dayEndHour]="23"
+            [hourSegmentHeight]="30">
+          </mwl-calendar-week-view>
+        </div>
+      </div>
+    </div>
+  }
+
+  <div class="comment-section">
+    @if (comments.length > 0) {
+        <div class="comments-wrapper">
+        @for(comm of comments; track comm.text){
+          <div class="comment-card">
+              <div class="comment-left">
+              <img class="comment-avatar" [src]="getImageUrl(comm.user.profileImage)" alt="Avatar">
+              </div>
+              <div class="comment-right">
+              <div class="comment-header">
+                  <span class="comment-user">{{comm.user.username}}</span>
+                  <span class="comment-date">{{comm.createdAt | date:'dd MMM yyyy HH:mm'}}</span>
+              </div>
+              <div class="comment-text">
+                  {{comm.text}}
+              </div>
+              </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="no-comments">There are no comments yet.</p>
+    }
+  </div>
+
+  <div class="map-section">
+    <app-map-component [address]="address"></app-map-component>
+  </div>
+
+</div>

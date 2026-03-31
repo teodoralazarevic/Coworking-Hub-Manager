@@ -1,0 +1,12 @@
+<div class="login-container">
+    <h1>Forgotten password</h1>
+
+    <p>Enter your username or email address</p>
+    <label>Username:</label> <input type="text" [(ngModel)]="username"> <br>
+    <label>Email</label> <input type="email" [(ngModel)]="email"> <br>
+    <button (click)="forgotPassword()">Send reset link</button>
+    <br>
+    <span [class]="successMessage">{{successMessage}}</span> <br>
+    <span [class]="errorMessage">{{errorMessage}}</span>
+</div>
+

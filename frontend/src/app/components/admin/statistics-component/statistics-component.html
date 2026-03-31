@@ -1,0 +1,95 @@
+<!-- components/admin/statistics/statistics.component.html -->
+<div class="statistics-container">
+  <h2 class="page-title">Workspace Statistics</h2>
+  
+  <!-- Statistics cards -->
+  <div class="stats-grid">
+    <div class="stat-card stat-card-primary">
+      <div class="stat-card-body">
+        <h5 class="stat-card-title">Total Reservations</h5>
+        <p class="stat-card-value">{{ totalReservations }}</p>
+      </div>
+    </div>
+    
+    <div class="stat-card stat-card-success">
+      <div class="stat-card-body">
+        <h5 class="stat-card-title">Completed</h5>
+        <p class="stat-card-value">{{ completedReservations }}</p>
+      </div>
+    </div>
+    
+    <div class="stat-card stat-card-warning">
+      <div class="stat-card-body">
+        <h5 class="stat-card-title">Active</h5>
+        <p class="stat-card-value">{{ activeReservations }}</p>
+      </div>
+    </div>
+    
+    <div class="stat-card stat-card-danger">
+      <div class="stat-card-body">
+        <h5 class="stat-card-title">Cancelled</h5>
+        <p class="stat-card-value">{{ cancelledReservations }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popularity chart -->
+  <div class="chart-card">
+    <div class="chart-card-header">
+      <h5>Workspace Popularity</h5>
+      <p class="chart-subtitle">Number of reservations per workspace</p>
+    </div>
+    <div class="chart-card-body">
+      <div class="chart-container">
+        <canvas id="popularityChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Revenue chart -->
+  <div class="chart-card">
+    <div class="chart-card-header">
+      <h5>Revenue by Workspace</h5>
+      <p class="chart-subtitle">Total revenue in RSD</p>
+    </div>
+    <div class="chart-card-body">
+      <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details table -->
+  <div class="table-card">
+    <div class="table-card-header">
+      <h5>Workspace Details</h5>
+      <p class="chart-subtitle">Showing {{ workspaceStats.length }} workspaces</p>
+    </div>
+    <div class="table-card-body">
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Workspace Name</th>
+            <th>Total Hours</th>
+            <th>Revenue (RSD)</th>
+            <th>Price per Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of workspaceStats" 
+              [class.no-reservations]="item.reservationCount === 0">
+            <td>{{ item.workspaceName }}</td>
+            <td>{{ formatHours(item.totalHours) }}</td>
+            <td>{{ item.revenue | number:'1.0-0' }} RSD</td>
+            <td>{{ item.pricePerHour }} RSD/h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Message if no workspaces -->
+  <div class="no-data-message" *ngIf="workspaceStats.length === 0">
+    <p>No workspaces available for display.</p>
+  </div>
+</div>

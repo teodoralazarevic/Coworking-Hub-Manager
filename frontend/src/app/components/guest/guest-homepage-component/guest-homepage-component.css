@@ -1,0 +1,57 @@
+/* workspace-dashboard.component.css */
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+th {
+  /* background-color: #6366f1;  */
+  background-color: #166534;
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: #f3f4f6; 
+}
+
+tr:hover {
+  background-color: #e0e7ff; 
+  cursor: pointer;
+}
+
+td {
+  color: #1f2937;
+}
+
+@media (max-width: 768px) {
+  th, td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}

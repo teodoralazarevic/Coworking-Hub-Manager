@@ -1,0 +1,12 @@
+<div class="image-container">
+
+  <button class="nav left" (click)="prev()">❮</button>
+
+  <img
+    [src]="getImageUrl(data.photos[currentIndex])"
+    class="full-image"
+  >
+
+  <button class="nav right" (click)="next()">❯</button>
+
+</div>

@@ -1,0 +1,131 @@
+<div class="workspace-details">
+  <h1>Workspace details</h1>
+
+  <div class="workspace-info">
+    <p><strong>Workspace name:</strong> {{workspace.workspaceName}}</p>
+    <p><strong>City:</strong> {{workspace.city}}</p>
+    <p><strong>Address:</strong> {{workspace.address}}</p>
+    <p><strong>Company:</strong> {{workspace.company.company_name}}</p>
+    <p><strong>Manager:</strong> {{workspace.manager.firstname}} {{workspace.manager.lastname}}</p>
+  </div>
+
+  <hr>
+
+  <div class="workspace-description">
+    <p>{{workspace.description}}</p>
+  </div>
+
+  <hr>
+
+  <app-gallery-component 
+      [photos]="workspace.photos" [loggedIn]="loggedUser" [workspaceID]="workspaceID">
+  </app-gallery-component>
+
+  @if(loggedUser){
+    <!-- LIKE / DISLIKE -->
+    <div class="react-buttons">
+      <div class="react-item">
+        <button [disabled]="!userCanLikeWorkspace" (click)="react('like')">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <div class="react-count">{{workspace.likesCount}}</div>
+      </div>
+
+      <div class="react-item">
+        <button [disabled]="!userCanLikeWorkspace" (click)="react('dislike')">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+        <div class="react-count">{{workspace.dislikeCount}}</div>
+      </div>
+    </div>
+
+    <!-- COMMENT SECTION -->
+    <div class="comment-section">
+      <textarea [disabled]="!userCanCommentWorkspace" [(ngModel)]="commentText" placeholder="Write your comment..."></textarea>
+      <button (click)="leaveComment()" [disabled]="!userCanCommentWorkspace">Leave a comment</button>
+    </div>
+  }
+</div>
+
+@if(loggedUser){
+  <!-- RESERVATION CALENDAR -->
+  <div class="reservation-wrapper">
+
+    @if(rooms.length>0){
+      <h3 class="room-title">{{ currentRoom.name }}</h3>
+    }
+
+    <div class="calendar-wrapper">
+      @if(rooms.length>1){
+        <div class="nav-buttons">
+          <button class="room-arrow left" (click)="prevRoom()">&#8592;</button>
+        </div>
+      }
+
+      <div class="reservation-calendar">
+        <div class="calendar-header">
+          <div class="nav-buttons">
+            <button (click)="prevWeek()">&#8592; Prev Week</button>
+            <button (click)="today()">Today</button>
+            <button (click)="nextWeek()">Next Week &#8594;</button>
+          </div>
+          <div class="week-label">{{ getWeekRange() }}</div>
+        </div>
+
+        <div [ngStyle]="{'pointer-events': !clientOk ? 'none' : 'auto', 'opacity': !clientOk ? 0.5 : 1}">
+          <mwl-calendar-week-view
+            [viewDate]="viewDate"
+            [events]="currentRoomEvents"
+            [weekStartsOn]="weekStartsOn"
+            [dayStartHour]="8"
+            [dayEndHour]="23"
+            (hourSegmentClicked)="reserve($event)">
+          </mwl-calendar-week-view>
+        </div>
+      </div>
+
+      @if(rooms.length>1){
+        <div class="nav-buttons">
+          <button class="room-arrow right" (click)="nextRoom()">&#8594;</button>
+        </div>
+      }
+    </div>
+
+    <div class="confirm-reservation-wrapper">
+        <button class="confirm-reservation-btn" (click)="confirmReservation()">Confirm your reservation</button>
+        <span class="errorMessage">{{errorMessage}}</span>
+        <span class="successMessage">{{successMessage}}</span>
+    </div>
+  </div>
+
+    @if(comments.length>0){
+        <div class="comments-wrapper">
+        <h2>Last 10 comments</h2>
+        @for(comm of comments; track comm.text){
+          <div class="comment-card" [class.my-comment]="myComment(comm)">
+              <div class="comment-left">
+              <img class="comment-avatar" [src]="getImageUrl(comm.user.profileImage)" alt="Avatar">
+              </div>
+              <div class="comment-right">
+              <div class="comment-header">
+                  <span class="comment-user">{{comm.user.username}}</span>
+                  <span class="comment-date">{{comm.createdAt | date:'dd MMM yyyy HH:mm'}}</span>
+              </div>
+              <div class="comment-text">
+                  {{comm.text}}
+              </div>
+              </div>
+          </div>
+        }
+      </div>
+    }
+    @else{
+    <h2 class="no-comments">There are no comments yet. Be the first to leave a comment!</h2>
+    }
+}
+
+<hr>
+<div>
+  <app-map-component [address]="address"></app-map-component>
+</div>
+<hr>

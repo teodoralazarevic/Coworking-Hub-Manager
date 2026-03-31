@@ -1,0 +1,119 @@
+<div class="capacity-report-container">
+  <h2>Monthly Capacity Report</h2>
+
+  <!-- Kontrole za izbor -->
+  <div class="report-controls">
+    <div class="form-group">
+      <label for="workspaceSelect">Select Workspace:</label>
+      <select 
+        id="workspaceSelect" 
+        [(ngModel)]="selectedWorkspaceId" 
+        (change)="onWorkspaceChange()">
+        <option [value]="null" disabled>-- Choose workspace --</option>
+        @for (ws of workspaces; track ws._id) {
+          <option [value]="ws._id">{{ ws.workspaceName }} ({{ ws.city }})</option>
+        }
+      </select>
+    </div>
+
+    @if (selectedWorkspaceId) {
+      <div class="form-group">
+        <label for="monthSelect">Select Month:</label>
+        <input 
+          type="month" 
+          id="monthSelect" 
+          [(ngModel)]="selectedMonth" 
+          (change)="loadReportData()">
+      </div>
+    }
+  </div>
+
+  <!-- Prikaz podataka i generisanje izveštaja -->
+  @if (selectedWorkspaceId && selectedMonth && reportData) {
+    <div class="report-section">
+      <div class="report-header">
+        <h3>Report for {{ getMonthName() }} {{ getYear() }}</h3>
+        <button class="generate-btn" (click)="generatePDF()">
+          📄 Generate PDF Report
+        </button>
+      </div>
+
+      <!-- Ukupna popunjenost -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="card-title">Overall Occupancy</div>
+          <div class="card-value">{{ reportData.overallOccupancy.toFixed(1) }}%</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Total Working Hours</div>
+          <div class="card-value">{{ reportData.totalWorkingHours }}</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Total Reservations</div>
+          <div class="card-value">{{ reportData.totalReservations }}</div>
+        </div>
+        <div class="summary-card">
+          <div class="card-title">Total Rooms</div>
+          <div class="card-value">{{ reportData.totalRooms }}</div>
+        </div>
+      </div>
+
+      <!-- Zbirni prikaz po tipovima prostorija -->
+      <div class="rooms-section">
+        <h4>Occupancy Summary by Room Type</h4>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Room Type</th>
+              <th>Number of Rooms</th>
+              <th>Occupied Hours</th>
+              <th>Total Hours</th>
+              <th>Occupancy %</th>
+              <th>Total Reservations</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (type of reportData.summaryByType; track type.type) {
+              <tr>
+                <td><strong>{{ type.type }}</strong></td>
+                <td>{{ type.roomCount }}</td>
+                <td>{{ type.occupiedHours.toFixed(1) }}</td>
+                <td>{{ type.totalHours }}</td>
+                <td>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" 
+                         [style.width.%]="type.occupancyPercentage"
+                         [style.background-color]="getColorByPercentage(type.occupancyPercentage)">
+                    </div>
+                    <span class="progress-text">{{ type.occupancyPercentage.toFixed(1) }}%</span>
+                  </div>
+                </td>
+                <td>{{ type.reservationCount }}</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td><strong>TOTAL</strong></td>
+              <td><strong>{{ reportData.totalRooms }}</strong></td>
+              <td><strong>{{ reportData.totalOccupiedHours.toFixed(1) }}</strong></td>
+              <td><strong>{{ reportData.totalAvailableHours }}</strong></td>
+              <td><strong>{{ reportData.overallOccupancy.toFixed(1) }}%</strong></td>
+              <td><strong>{{ reportData.totalReservations }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Loader -->
+@if (isLoading) {
+  <div class="loader">Loading report data...</div>
+}
+
+<!-- Poruke -->
+@if (errorMessage) {
+  <div class="error-message">{{ errorMessage }}</div>
+}

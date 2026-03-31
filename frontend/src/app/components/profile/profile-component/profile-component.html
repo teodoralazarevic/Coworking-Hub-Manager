@@ -1,0 +1,53 @@
+<div class="profile-wrapper">
+
+  <!-- Profile display -->
+  <div class="profile-container">
+    <!-- Profile info -->
+    <div class="profile-info">
+      <h3>Profile information</h3>
+      <p><strong>Username:</strong> {{loggedUser.username}}</p>
+      <p><strong>Firstname:</strong> {{loggedUser.firstname}}</p>
+      <p><strong>Lastname:</strong> {{loggedUser.lastname}}</p>
+      <p><strong>Contact:</strong> {{loggedUser.contact_phone}}</p>
+      <p><strong>Email:</strong> {{loggedUser.email}}</p>
+    </div>
+
+    <!-- Profile image -->
+    <div class="profile-image">
+      <img [src]="getImageUrl(loggedUser.profileImage)" alt="Profile Image" class="profile-img">
+    </div>
+  </div>
+
+  <button class="toggle-update-btn" (click)="showUpdateWindow=!showUpdateWindow">
+    Update my profile
+  </button>
+
+  <hr>
+
+  <!-- Update profile form -->
+  @if(showUpdateWindow){
+    <div class="profile-container update-container">
+
+      <!-- Profile info form -->
+      <div class="profile-info">
+        <h3>Update profile</h3>
+        <p><strong>Firstname:</strong> <input type="text" [(ngModel)]="newUserInfo.firstname"></p>
+        <p><strong>Lastname:</strong> <input type="text" [(ngModel)]="newUserInfo.lastname"></p>
+        <p><strong>Contact:</strong> <input type="tel" [(ngModel)]="newUserInfo.contact_phone"></p>
+        <p><strong>Email:</strong> <input type="email" [(ngModel)]="newUserInfo.email"></p>
+        <p><strong>Password:</strong> <input type="password" [(ngModel)]="newUserInfo.password"></p>
+        <p><strong>Profile Image:</strong> <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg"></p>
+        <button class="update-btn" (click)="updateProfile()">Save Changes</button>
+        <div class="form-messages">
+          <span class="success-message">{{successMessage}}</span>
+          <span class="error-message">{{errorMessage}}</span>
+        </div>
+      </div>
+
+      <!-- Profile image preview -->
+      <div class="profile-image">
+        <img [src]="previewImageUrl || getImageUrl(loggedUser.profileImage)" alt="Profile Image" class="profile-img">
+      </div>
+    </div>
+  }
+</div>

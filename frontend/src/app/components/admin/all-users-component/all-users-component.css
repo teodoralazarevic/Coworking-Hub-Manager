@@ -1,0 +1,63 @@
+.users-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.image-section {
+  flex-shrink: 0;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info-section {
+  flex: 1;
+}
+
+.info-section h3 {
+  margin: 0 0 8px 0;
+}
+
+.info-section p {
+  margin: 3px 0;
+  font-size: 14px;
+}
+
+.action-section button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  /* background-color: #1976d2; */
+  background-color: #166534;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.action-section button:hover {
+  /* background-color: #1565c0; */
+  background-color: #288c4f;
+}

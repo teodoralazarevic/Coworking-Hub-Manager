@@ -1,0 +1,118 @@
+<h1>Discover our working spaces</h1>
+<br>
+<mat-card>
+  
+
+  <mat-card-content>
+
+    <!-- Name input -->
+    <mat-form-field >
+      <mat-label>Name of the space</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+    <br>
+
+    <!-- Cities select -->
+    <mat-form-field appearance="outline">
+      <mat-label>Choose cities</mat-label>
+      <mat-select [(ngModel)]="selectedCities" multiple>
+        @for(city of cities; track city){
+          <mat-option [value]="city">{{city}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Member search options -->
+    @if(memberSearch){
+      <div class="member-options">
+        <mat-checkbox (change)="selectType('open')" [disabled]="selectedType!='' && selectedType!=='open'"
+        [checked]="selectedType === 'open'">
+            Desk in open space
+        </mat-checkbox>
+
+        <mat-checkbox (change)="selectType('office')" [disabled]="selectedType!='' && selectedType!=='office'"
+        [checked]="selectedType==='office'">
+            Separate office
+        </mat-checkbox>
+
+        <mat-checkbox (change)="selectType('conf')" [disabled]="selectedType!='' && selectedType!=='conf'"
+        [checked]="selectedType==='conf'">
+            Conference room (10-12 people)
+        </mat-checkbox>
+        <br>
+
+        @if(selectedType==='office'){
+          <mat-form-field appearance="outline">
+            <mat-label>Office capacity</mat-label>
+            <input matInput type="number" [(ngModel)]="officeCapacity">
+          </mat-form-field>
+        }
+      </div>
+    }
+
+    <!-- Search button -->
+    <div class="search-btn">
+      <button mat-raised-button color="primary" (click)="search()">Search</button>
+    </div>
+
+    <span class="errorMessage">{{errorMessage}}</span>
+
+  </mat-card-content>
+</mat-card>
+
+<!-- Sort bar -->
+@if(resultsFound){
+<div class="sort-bar">
+  <span>Sort by:</span>
+  <button mat-stroked-button (click)="sort('workspaceName')">
+      Name
+      @if(sortDirections.workspaceName){
+        <mat-icon>arrow_downward</mat-icon>
+      }
+      @else{
+        <mat-icon>arrow_upward</mat-icon>
+      }
+  </button>
+
+  <button mat-stroked-button (click)="sort('city')">
+      City
+      @if(sortDirections.city){
+        <mat-icon>arrow_downward</mat-icon>
+      }
+      @else{
+        <mat-icon>arrow_upward</mat-icon>
+      }
+  </button>
+</div>
+}
+
+<!-- Workspace cards -->
+@if(resultsFound){
+<div class="workspace-grid">
+  @for(ws of workspaces; track ws.workspaceName){
+    <mat-card class="workspace-card">
+
+      <mat-card-header>
+        <mat-card-title>{{ws.workspaceName}}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-icon>location_city</mat-icon> {{ws.city}}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-content>
+        <p><mat-icon>euro</mat-icon> {{ws.pricePerHour}} RSD / hour</p>
+        <p><mat-icon>place</mat-icon> {{ws.address}}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="workspaceDetails(ws._id)">
+          Details
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  }
+</div>
+}

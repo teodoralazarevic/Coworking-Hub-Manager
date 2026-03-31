@@ -1,0 +1,34 @@
+<div class="user-edit-card">
+  <h1>Edit User</h1>
+
+  <form (ngSubmit)="saveUser()" #userForm="ngForm" class="user-form">
+
+    <div class="form-row">
+      <label for="firstname">Firstname:</label>
+      <input id="firstname" type="text" [(ngModel)]="user.firstname" name="firstname" required>
+    </div>
+
+    <div class="form-row">
+      <label for="lastname">Lastname:</label>
+      <input id="lastname" type="text" [(ngModel)]="user.lastname" name="lastname" required>
+    </div>
+
+    <div class="form-row">
+      <label for="contact_phone">Contact Phone:</label>
+      <input id="contact_phone" type="text" [(ngModel)]="user.contact_phone" name="contact_phone">
+    </div>
+
+    <div class="form-row">
+      <label for="email">Email:</label>
+      <input id="email" type="email" [(ngModel)]="user.email" name="email" required>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-save">Save changes</button>
+    </div>
+
+  </form>
+
+  <span class="errorMessage">{{errorMessage}}</span>
+  <span class="successMessage">{{successMessage}}</span>
+</div>

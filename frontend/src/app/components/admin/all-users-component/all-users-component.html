@@ -1,0 +1,32 @@
+<h1>All users</h1>
+
+<div class="users-container">
+
+    @for(user of allUsers; track user.username){
+        <div class="user-card" (click)="goToProfile(user.username)">
+
+            <div class="image-section">
+            <img 
+                [src]="getImageUrl(user.profileImage)" 
+                alt="Profile Image"
+                class="profile-img">
+            </div>
+
+            <div class="info-section">
+            <h3>{{ user.firstname }} {{ user.lastname }}</h3>
+
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Contact phone:</strong> {{ user.contact_phone }}</p>
+            <p><strong>Type:</strong> {{ user.type }}</p>
+            </div>
+
+            <div class="action-section">
+            <button (click)="goToProfile(user.username); $event.stopPropagation()">
+                Details
+            </button>
+            </div>
+
+        </div>
+    }
+</div>

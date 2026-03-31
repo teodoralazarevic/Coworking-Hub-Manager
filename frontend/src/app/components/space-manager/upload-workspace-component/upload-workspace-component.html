@@ -1,0 +1,12 @@
+<h1>Upload workspace</h1>
+
+<input type="file" (change)="onFileSelected($event)" accept=".json"> <br><br>
+<button (click)="uploadWorkspaceFile()" [disabled]="!selectedFile">Upload JSON</button> <br>
+
+@if(filePreview){
+    <h3>Preview JSON</h3>
+    <pre>{{filePreview}}</pre>
+}
+
+<span>{{successMessage}}</span> <br>
+<span>{{errorMessage}}</span>

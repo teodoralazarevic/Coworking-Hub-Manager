@@ -1,0 +1,118 @@
+<h1 class="page-title">Update Workspace</h1>
+
+<!-- BASIC INFO -->
+<section class="form-section">
+  <h2>Basic Information</h2>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Workspace name</label>
+      <input type="text" [(ngModel)]="workspace.workspaceName">
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <input type="text" [(ngModel)]="workspace.city">
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" [(ngModel)]="workspace.address">
+    </div>
+    <div class="form-group">
+      <label>Price per Hour (RSD)</label>
+      <input type="number" [(ngModel)]="workspace.pricePerHour">
+    </div>
+    <div class="form-group">
+      <label>Penalty points</label>
+      <input type="number" [(ngModel)]="workspace.penaltyPoints">
+    </div>
+    <div class="form-group">
+      <label>Open space desks</label>
+      <input type="number" min="1" [(ngModel)]="workspace.openSpace.desks">
+    </div>
+    <div class="form-group full-width">
+      <label>Description</label>
+      <textarea rows="4" [(ngModel)]="workspace.description"></textarea>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<!-- OFFICES -->
+<section class="form-section">
+  <h2>Existing Offices</h2>
+  <div class="list-wrapper">
+    @for(off of workspace.offices; track off.name){
+      <div class="list-item">
+        <input type="text" [(ngModel)]="off.name">
+        <input type="number" [(ngModel)]="off.desks">
+        <button class="btn-remove" (click)="removeOffice(off)">Remove</button>
+      </div>
+    }
+  </div>
+
+  <h3>Add New Office</h3>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Office Name</label>
+      <input type="text" [(ngModel)]="office.name">
+    </div>
+    <div class="form-group">
+      <label>Number of Desks</label>
+      <input type="number" min="1" [(ngModel)]="office.desks">
+    </div>
+  </div>
+  <button class="btn-primary" (click)="addOffice()">Add Office</button>
+</section>
+
+<hr>
+
+<!-- CONFERENCE ROOMS -->
+<section class="form-section">
+  <h2>Conference Rooms</h2>
+  <div class="list-wrapper">
+    @for(room of workspace.confRooms; track room.name){
+      <div class="list-item">
+        <input type="text" [(ngModel)]="room.name">
+        <textarea rows="2" [(ngModel)]="room.equipment"></textarea>
+        <button class="btn-remove" (click)="removeConfRoom(room)">Remove</button>
+      </div>
+    }
+  </div>
+
+  <h3>Add New Conference Room</h3>
+  <div class="form-group full-width">
+    <label>Room Name</label>
+    <input type="text" [(ngModel)]="confRoom.name">
+  </div>
+  <div class="form-group full-width">
+    <label>Additional Equipment</label>
+    <textarea rows="3" maxlength="300" [(ngModel)]="confRoom.equipment"></textarea>
+  </div>
+  <button class="btn-primary" (click)="addConfRoom()">Add Conference Room</button>
+</section>
+
+<hr>
+
+<!-- PHOTOS -->
+<section class="form-section">
+  <h2>Photos</h2>
+  <div class="photo-grid">
+    @for(photo of workspace.photos; track photo){
+      <div class="photo-card">
+        <img [src]="getImageUrl(photo)" alt="Workspace photo">
+        <button class="btn-remove" (click)="removePhoto(photo)">Delete</button>
+      </div>
+    }
+  </div>
+  <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*">
+</section>
+
+<hr>
+
+<!-- SUBMIT -->
+<div class="submit-section">
+  <button class="btn-primary" (click)="updateWorkspace()">Update Workspace</button>
+</div>
+
+<span class="errorMessage">{{errorMessage}}</span>
+<span class="successMessage">{{successMessage}}</span>

@@ -1,0 +1,58 @@
+<mat-toolbar class="guest-header">
+
+  <div class="logo" (click)="goHome()">
+    <mat-icon class="logo-icon">apartment</mat-icon>
+    <span class="logo-text">Coworking Hub Manager</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+
+    <!-- Users -->
+    <button mat-stroked-button routerLink="/admin/all-users">
+      <mat-icon>group</mat-icon>
+      All Users
+    </button>
+
+    <!-- Pending Registrations -->
+    <button mat-stroked-button routerLink="/admin/registrations-pending">
+      <mat-icon>pending_actions</mat-icon>
+      Pending Registrations
+    </button>
+
+    <!-- Pending Workspaces -->
+    <button mat-stroked-button routerLink="/admin/workspaces-pending">
+      <mat-icon>apartment</mat-icon>
+      Pending Workspaces
+    </button>
+
+    <!-- Statistics -->
+    <button mat-stroked-button routerLink="/admin/statistics">
+      <mat-icon>bar_chart</mat-icon>
+      Statistics
+    </button>
+
+    <!-- Logout -->
+    <button mat-button color="primary" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+
+  </nav>
+
+</mat-toolbar>
+
+<main class="guest-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="guest-footer">
+  <div class="footer-content">
+    <span>© 2026 Coworking Hub Manager</span>
+    <span class="footer-links">
+      <a routerLink="/admin/dashboard">Dashboard</a> •
+      <a (click)="logout()">Logout</a>
+    </span>
+  </div>
+</footer>

@@ -1,0 +1,68 @@
+<h1>Pending Workspace Registrations</h1>
+
+@if(pendingWsExist){
+    <div class="pending-workspaces">
+        @for(ws of pendingWorkspaces; track ws.workspaceName){
+            <div class="workspace-card">
+                <!-- IMAGE -->
+                @if(ws.photos.length > 0){
+                    <img class="workspace-photo" [src]="getImageUrl(ws.photos[0])" alt="Workspace photo">
+                }@else{
+                    <div class="workspace-photo placeholder">No image</div>
+                }
+                <!-- INFO -->
+                <div class="workspace-main">
+                    <div class="workspace-header">
+                        <h3 class="workspace-name">{{ws.workspaceName}}</h3>
+                        <div class="workspace-city">
+                            <mat-icon class="location-icon">location_on</mat-icon>
+                            {{ws.city}}
+                        </div>
+                        <div class="workspace-address">{{ws.address}}</div>
+                        <div class="workspace-price"><b>Price per hour:</b> {{ws.pricePerHour}} RSD</div>
+                    </div>
+                    <!-- SPACES -->
+                    <div class="workspace-spaces">
+                        <div class="space-block">
+                            <b>Open space</b><br>
+                            {{ws.openSpace.name}} – {{ws.openSpace.desks}} desks
+                        </div>
+                        <div class="space-block">
+                            <b>Offices</b><br>
+                            @if(ws.offices.length > 0){
+                                @for(office of ws.offices; track office.name){
+                                    <span class="space-item">{{office.name}} – {{office.desks}}</span>
+                                }
+                            }
+                            @else{
+                                <span class="muted">None</span>
+                            }
+                        </div>
+
+                        <div class="space-block">
+                            <b>Conference rooms</b><br>
+                            @if(ws.confRooms.length > 0){
+                                @for(room of ws.confRooms; track room.name){
+                                    <span class="space-item">{{room.name}}</span>
+                                }
+                            }
+                            @else{
+                                <span class="muted">None</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- ACTIONS -->
+                <div class="workspace-actions">
+                    <button class="btn-accept" (click)="acceptWorkspace(ws)">Accept</button>
+                    <button class="btn-reject" (click)="rejectWorkspace(ws)">Reject</button>
+                </div>
+            </div>
+        }
+    </div>
+}@else{
+    <p class="empty-message">There are no workspace registration requests.</p>
+}
+
+<span class="errorMessage">{{errorMessage}}</span>
+<span class="successMessage">{{successMessage}}</span>

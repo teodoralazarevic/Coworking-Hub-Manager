@@ -1,0 +1,39 @@
+<mat-toolbar class="guest-header">
+
+  <div class="logo" (click)="goHome()">
+    <mat-icon class="logo-icon">apartment</mat-icon>
+    <span class="logo-text">Coworking Hub Manager</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+    <button mat-stroked-button routerLink="/guest/search">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+
+    <button mat-button color="primary" routerLink="/guest/login">
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  </nav>
+
+</mat-toolbar>
+
+
+<main class="guest-content">
+  <router-outlet></router-outlet>
+</main>
+
+
+<footer class="guest-footer">
+  <div class="footer-content">
+    <span>© 2026 Coworking Hub Manager</span>
+    <span class="footer-links">
+      <a routerLink="/guest/search">Find workspace</a>
+      •
+      <a routerLink="/guest/login">Login</a>
+    </span>
+  </div>
+</footer>

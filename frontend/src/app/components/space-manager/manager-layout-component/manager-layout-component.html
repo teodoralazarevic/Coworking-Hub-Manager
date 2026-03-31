@@ -1,0 +1,70 @@
+<mat-toolbar class="guest-header">
+
+  <div class="logo" (click)="goHome()">
+    <mat-icon class="logo-icon">apartment</mat-icon>
+    <span class="logo-text">Coworking Hub Manager</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="nav-links">
+
+    <button mat-stroked-button routerLink="/manager/profile">
+      <mat-icon>person</mat-icon>
+      Profile
+    </button>
+
+    <button mat-stroked-button routerLink="/manager/reservations">
+      <mat-icon>event</mat-icon>
+      Reservations
+    </button>
+
+    <button mat-stroked-button [matMenuTriggerFor]="workspaceMenu">
+      <mat-icon>business</mat-icon>
+      Add workspace
+    </button>
+
+    <mat-menu #workspaceMenu="matMenu">
+      <button mat-menu-item routerLink="/manager/manage-workspace">
+        Through form
+      </button>
+
+      <button mat-menu-item routerLink="/manager/upload-workspace">
+        From file
+      </button>
+    </mat-menu>
+
+    <button mat-stroked-button routerLink="/manager/report">
+      <mat-icon>analytics</mat-icon>
+      Report
+    </button>
+
+    <button mat-button color="primary" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+
+  </nav>
+
+</mat-toolbar>
+
+
+<main class="guest-content">
+  <router-outlet></router-outlet>
+</main>
+
+
+<footer class="guest-footer">
+  <div class="footer-content">
+    <span>© 2026 Coworking Hub Manager</span>
+
+    <span class="footer-links">
+      <a routerLink="/manager/profile">Profile</a>
+      •
+      <a routerLink="/manager/reservations">Reservations</a>
+      •
+      <a (click)="logout()">Logout</a>
+    </span>
+
+  </div>
+</footer>

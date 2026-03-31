@@ -1,0 +1,27 @@
+<div class="login-container">
+    <h1>Registration page</h1>
+    <h3>User info</h3>
+    Username: <input type="text" [(ngModel)]="newUser.username"> <br>
+    Password: <input type="password" [(ngModel)]="newUser.password"> <br>
+    Firstname: <input type="text" [(ngModel)]="newUser.firstname"> <br>
+    Lastname: <input type="text" [(ngModel)]="newUser.lastname"> <br>
+    Contact telephone: <input type="tel" [(ngModel)]="newUser.contact_phone"> <br>
+    Email: <input type="email" [(ngModel)]="newUser.email"> <br>
+    
+    <input type="checkbox" name="" id="checkbox" [(ngModel)]="spaceManager">I am a space manager <br>
+    <hr>
+
+    @if(spaceManager){
+        <h3>Company info</h3>
+        Company name: <input type="text" [(ngModel)]="company.company_name"> <br>
+        Company address: <input type="text" [(ngModel)]="company.company_address"> <br>
+        Registration number: <input type="text" [(ngModel)]="company.reg_number"> <br>
+        Tax identification number: <input type="text" [(ngModel)]="company.tax_ident_number"> <br>
+    }
+    <input type="file" (change)="onFileSelected($event)" accept="image/png, image/jpeg">
+    <button (click)="register()">Register</button>
+    <br>
+    <span class="errorMessage">{{errorMessage}}</span>
+    <br>
+    <span class="successMessage">{{successMessage}}</span>
+</div>

@@ -1,0 +1,74 @@
+<app-profile-component></app-profile-component>
+
+<div>
+    
+</div>
+@if(workspaces.length > 0){
+
+<h2 class="section-title">Our Workspaces</h2>
+
+<div class="workspace-list">
+
+@for(ws of workspaces; track ws.workspaceName){
+
+<div class="workspace-row">
+
+<div class="workspace-info">
+
+<h3 class="workspace-name">{{ws.workspaceName}}</h3>
+
+@if(ws.photos.length > 0){
+<img class="workspace-photo" [src]="getImageUrl(ws.photos[0])" alt="Workspace photo">
+}
+
+<div class="workspace-city">
+<mat-icon class="location-icon">location_on</mat-icon>
+{{ws.city}}
+</div>
+
+</div>
+
+<div class="workspace-spaces">
+
+<div class="space-block">
+<b>Open space</b><br>
+{{ws.openSpace.name}} – {{ws.openSpace.desks}} desks
+</div>
+
+<div class="space-block">
+<b>Offices</b><br>
+@if(ws.offices.length > 0){
+@for(office of ws.offices; track office.name){
+<span class="space-item">{{office.name}} – {{office.desks}}</span>
+}
+}@else{
+<span class="muted">None</span>
+}
+</div>
+
+<div class="space-block">
+<b>Conference rooms</b><br>
+@if(ws.confRooms.length > 0){
+@for(room of ws.confRooms; track room.name){
+<span class="space-item">{{room.name}}</span>
+}
+}@else{
+<span class="muted">None</span>
+}
+</div>
+
+</div>
+
+<div class="workspace-action">
+<button class="btn-update" (click)="updateWorkspace(ws)">Update</button>
+</div>
+
+</div>
+
+}
+
+</div>
+
+}@else{
+<p class="empty">No workspaces yet.</p>
+}

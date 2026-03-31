@@ -1,0 +1,305 @@
+/* WORKSPACE DETAILS CARD */
+.workspace-details {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.workspace-details:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.workspace-details h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.workspace-info p {
+  font-size: 16px;
+  color: #374151;
+  margin: 6px 0;
+}
+
+.workspace-info strong {
+  color: #111827;
+}
+
+.workspace-description {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-top: 15px;
+}
+
+.workspace-description p {
+  margin: 0;
+}
+
+
+/* COMMENT SECTION */
+.comment-section {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  gap: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-section button {
+  align-self: flex-start;
+  font-weight: 600;
+  background-color: #e480df;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.comments-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-card {
+  display: flex;
+  gap: 15px;
+  background-color: #f9fafb;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.comment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.comment-left {
+  flex-shrink: 0;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.comment-user {
+  font-weight: 600;
+  color: #111827;
+}
+
+.comment-date {
+  font-style: italic;
+}
+
+.comment-text {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.no-comments {
+  color: #6b7280;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+/* RESERVATION CALENDAR CARD */
+.reservation-wrapper {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  margin-top: 30px;
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reservation-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.reservation-wrapper h2 {
+  font-size: 22px;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.room-title {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #374151;
+}
+.room-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  background-color: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none; /* uklanja default strelicu u nekim browserima */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6H0z' fill='%23737d86'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 6px;
+}
+
+.room-select:hover {
+  border-color: #6366f1;
+}
+
+.room-select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+.calendar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.reservation-calendar {
+  width: 900px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+  max-height: 450px;
+  overflow-y: auto;
+  background-color: #f9fafb;
+  opacity: 70%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.calendar-header .nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.calendar-header .nav-buttons button {
+  background-color: #e480df;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.calendar-header .nav-buttons button:hover {
+  background-color: #e480df;
+}
+
+.week-label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+.room-arrow {
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #e480df;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  transition: 0.2s;
+}
+
+.room-arrow:hover {
+  background-color: #e480df;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+
+.errorMessage {
+  color: #b91c1c;
+  font-weight: 500;
+  margin-top: 10px;
+  display: block;
+}
+
+.successMessage {
+  color: #059669;
+  font-weight: 500;
+  margin-top: 10px;
+  display: block;
+}
+
+/* COMMENTS TABLE */
+.comments-table-wrapper {
+  margin-top: 20px;
+}
+
+.comments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comments-table th,
+.comments-table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.comments-table th {
+  background-color: #f3f4f6;
+  color: #111827;
+}

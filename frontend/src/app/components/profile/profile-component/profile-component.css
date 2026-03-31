@@ -1,0 +1,124 @@
+.profile-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h3 {
+  font-size: 22px;
+  color: #1f2937;
+  margin-bottom: 15px;
+}
+
+.profile-info p {
+  font-size: 16px;
+  color: #374151;
+  margin: 6px 0;
+}
+
+.profile-image {
+  flex-shrink: 0;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* border: 3px solid #6366f1; */
+  border: #166534;
+  transition: transform 0.2s;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+/* Toggle update button */
+.toggle-update-btn {
+  display: block;
+  margin: 10px auto 20px;
+  /* background-color: #6366f1; */
+  background-color: #166534;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-update-btn:hover {
+  /* background-color: #4f46e5; */
+  background-color: #10b981;
+}
+
+/* Update form styles */
+.update-container {
+  gap: 30px;
+}
+
+.update-container input[type="text"],
+.update-container input[type="tel"],
+.update-container input[type="email"],
+.update-container input[type="password"],
+.update-container input[type="file"] {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.update-btn {
+  margin-top: 10px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.update-btn:hover {
+  background-color: #059669;
+}
+
+/* Success / Error messages */
+.form-messages {
+  margin-top: 10px;
+}
+
+.success-message {
+  color: #059669;
+  font-weight: 500;
+  display: block;
+}
+
+.error-message {
+  color: #b91c1c;
+  font-weight: 500;
+  display: block;
+}

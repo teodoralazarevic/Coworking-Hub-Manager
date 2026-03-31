@@ -1,0 +1,42 @@
+mat-grid-tile img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.main-image-container{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:15px;
+}
+
+.main-image{
+  width:600px;
+  max-width:100%;
+  border-radius:8px;
+}
+
+.thumbnail-container{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+}
+
+.thumbnail{
+  width:100px;
+  height:70px;
+  object-fit:cover;
+  cursor:pointer;
+  border-radius:6px;
+  opacity:0.7;
+  transition:0.2s;
+}
+
+.thumbnail:hover{
+  opacity:1;
+}
+
+.thumbnail.active{
+  border:3px solid #1976d2;
+  opacity:1;
+}

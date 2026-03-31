@@ -1,0 +1,30 @@
+@if(loggedIn){
+<mat-grid-list cols="3" rowHeight="150px" gutterSize="10px">
+    @for(photo of photos; track photo){
+    <mat-grid-tile>
+        <img 
+        [src]="getImageUrl(photo)" 
+        (click)="openImage(photo)" 
+        style="width:100%; height:100%; object-fit: cover; cursor: pointer;"
+        >
+    </mat-grid-tile>
+}
+</mat-grid-list>
+}
+@else{
+
+<div class="main-image-container">
+    <img [src]="getImageUrl(selectedPhoto)" class="main-image">
+</div>
+
+<div class="thumbnail-container">
+    @for(photo of photos.slice(0,5); track photo){
+        <img 
+            [src]="getImageUrl(photo)"
+            (click)="selectPhoto(photo)"
+            [class.active]="photo === selectedPhoto"
+            class="thumbnail">
+    }
+</div>
+
+}

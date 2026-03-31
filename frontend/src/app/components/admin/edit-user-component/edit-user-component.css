@@ -1,0 +1,78 @@
+.user-edit-card {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.user-edit-card h1 {
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #374151;
+}
+
+.form-row input {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.form-row input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+}
+
+.form-actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-save {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-save:hover {
+  background: #4f46e5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.errorMessage {
+  color: #ef4444;
+  margin-top: 12px;
+  display: block;
+}
+
+.successMessage {
+  color: #10b981;
+  margin-top: 12px;
+  display: block;
+}
