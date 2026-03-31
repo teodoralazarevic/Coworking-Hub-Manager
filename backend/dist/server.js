@@ -1,0 +1,28 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
+var mongoose_1 = __importDefault(require("mongoose"));
+var path_1 = __importDefault(require("path"));
+var user_router_1 = __importDefault(require("./routers/user.router"));
+var company_router_1 = __importDefault(require("./routers/company.router"));
+var workspace_router_1 = __importDefault(require("./routers/workspace.router"));
+var reservation_router_1 = __importDefault(require("./routers/reservation.router"));
+var app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+var router = express_1.default.Router();
+router.use("/users", user_router_1.default);
+router.use("/companies", company_router_1.default);
+router.use("/workspaces", workspace_router_1.default);
+router.use("/reservations", reservation_router_1.default);
+app.use("/", router);
+app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, '../uploads')));
+app.use("/public", express_1.default.static(path_1.default.join(__dirname, 'src/public')));
+mongoose_1.default.connect("mongodb://127.0.0.1:27017/HubManager");
+var conn = mongoose_1.default.connection;
+conn.once("open", function () { console.log("DB connection OK"); });
+app.listen(4000, function () { return console.log("Express running on port 4000!"); });
